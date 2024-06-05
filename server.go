@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gin-gonic/gin"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"grpcdome/etcd"
 	"log"
 	"time"
 
@@ -24,7 +25,7 @@ func main() {
 		)
 
 		v1.RegisterOrderManagerServiceServer(s, &OrderManagerService{})
-
+		go etcd.RegisterEndPointToEtcd(context.Background(), "order_service", grpcPort)
 		if err := s.Serve(listen); err != nil {
 			panic(err)
 		}
