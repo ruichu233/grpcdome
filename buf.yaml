@@ -1,0 +1,14 @@
+version: v2
+modules:
+  - path: proto
+lint:
+  use:
+    - DEFAULT
+  ignore:
+    - google/api/annotations.proto
+    - google/api/http.proto
+breaking:
+  use:
+    - FILE
+deps:
+  - buf.build/googleapis/googleapis
